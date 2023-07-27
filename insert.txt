@@ -1,0 +1,45 @@
+$table = users
+$model = User
+$columns = name, email, password, mobile_number
+
+<!-- Insert -->
+<!-- 1 Way  -->
+<!-- $_GET['name'] -->
+<!-- Request $request -->
+$user = new User;
+$user->name = $request->post('name');
+$user->email = $request->post('email');
+$user->password = $request->post('password');
+$user->mobile_number = $request->post('mobile_number');
+$user->save();
+
+<!-- 2 way -->
+<!-- $name = $request->post('name'); -->
+User::insert([
+    'name'  => $name,
+    ...
+],[],[],);
+
+
+<!-- 3 way -->
+
+User::create([
+    'name'  => $name,
+    ...
+]);
+
+
+<!-- 4 way -->
+DB::table('users')->create();
+
+
+$user = User::where('id',1)->first();
+
+$user->update([
+    ''
+]);
+
+$user->delete();
+<!-- $user->name -->
+
+<!-- {{ route('products.show', [$id]) }} -->
