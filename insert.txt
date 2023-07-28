@@ -43,3 +43,33 @@ $user->delete();
 <!-- $user->name -->
 
 <!-- {{ route('products.show', [$id]) }} -->
+
+
+
+<!-- Form validation -->
+
+<!-- 1st way -->
+<!-- $request->validate($rules, $message); -->
+
+$request->validate([
+    'name'  => 'required',
+    'description'   => 'required'
+]);
+
+<!-- 2nd way -->
+
+$v = \Validator::make($data,$rules,$message)
+
+
+$validator = Validator::make($request->all(), [
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
+
+if ($validator->fails()) {
+            return redirect('post/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+<!-- 3rd Way -->
